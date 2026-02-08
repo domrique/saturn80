@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ФК Сатурн Раменское | 80 ЛЕТ | 1946-2026</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&family=Russo+One&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        saturn: {
+                            blue: '#002D62',
+                            dark: '#050a14',
+                            neon: '#00d4ff',
+                            gold: '#FFD700', 
+                            silver: '#C0C0C0'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Roboto', 'sans-serif'],
+                        condensed: ['Oswald', 'sans-serif'],
+                        display: ['Russo One', 'sans-serif'],
+                        mono: ['Share Tech Mono', 'monospace'],
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "linear-gradient(to right, #1f2937 1px, transparent 1px), linear-gradient(to bottom, #1f2937 1px, transparent 1px)",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #050a14;
+            color: #e5e7eb;
+        }
+
+        /* Clean modern scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #002D62; 
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FFD700;
+        }
+
+        /* Subtle Stars Background */
+        .stars-bg {
+            background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            transition: all 0.3s ease;
+        }
+        
+        .glass-card:hover {
+            border-color: rgba(255, 215, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, #00d4ff, transparent);
+        }
+
+        /* Quiz Styles */
+        .quiz-option {
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        .quiz-option:hover {
+            background: rgba(0, 212, 255, 0.1);
+            border-color: #00d4ff;
+        }
+        .quiz-option.selected {
+            background: rgba(255, 215, 0, 0.2);
+            border-color: #FFD700;
+            color: #FFD700;
+        }
+
+        /* Tab Styles for Stats */
+        .stat-tab.active {
+            border-bottom: 2px solid #FFD700;
+            color: #FFD700;
+        }
+        
+        /* Image Aspect Ratio Utils */
+        .aspect-logo { aspect-ratio: 1 / 1; }
+        .aspect-portrait { aspect-ratio: 3 / 4; }
+        .aspect-landscape { aspect-ratio: 16 / 9; }
+    </style>
+</head>
+<body class="overflow-x-hidden font-sans">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-saturn-dark/90 backdrop-blur-md border-b border-white/5">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <!-- LOGO NAV -->
+                <div class="w-10 h-10 relative">
+                    <!-- ЗАМЕНИТЬ SRC -->
+                    <img src="images/logosmall.png" alt="Logo" class="w-full h-full object-contain drop-shadow-[0_0_10px_rgba(0,212,255,0.5)]">
+                </div>
+                <div class="text-2xl font-display uppercase tracking-widest text-saturn-neon">
+                    Сатурн<span class="text-white">80</span>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex space-x-8 text-sm uppercase tracking-wide font-mono text-gray-400">
+                <a href="#history" class="hover:text-saturn-neon transition">Хроника</a>
+                <a href="#euro" class="hover:text-saturn-neon transition">Еврокубки</a>
+                <a href="#stats" class="hover:text-saturn-gold transition">Статистика</a>
+                <a href="#coaches" class="hover:text-saturn-neon transition">Легенды</a>
+                <a href="#quiz" class="hover:text-saturn-gold transition">Тест</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative min-h-screen flex items-center justify-center stars-bg overflow-hidden pt-20">
+        <div class="absolute inset-0 bg-grid-pattern bg-[length:50px_50px] opacity-5"></div>
+        
+        <!-- Animated Background Elements -->
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-saturn-blue/20 rounded-full blur-[100px] animate-pulse"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-64 h-64 bg-saturn-neon/10 rounded-full blur-[80px]"></div>
+
+        <div class="container mx-auto px-4 text-center relative z-10" data-aos="zoom-in" data-aos-duration="1000">
+            <!-- LOGO HERO -->
+            <div class="w-64 h-64 mx-auto mb-6 relative animate-pulse">
+                 <!-- ЗАМЕНИТЬ SRC -->
+                <img src="images/logo.png" alt="Big Logo" class="w-full h-full object-contain drop-shadow-[0_0_30px_rgba(0,212,255,0.4)]">
+            </div>
+
+            <div class="mb-6 inline-flex items-center gap-2 border border-saturn-gold/30 px-6 py-2 rounded-full bg-saturn-blue/10 backdrop-blur-sm text-saturn-gold font-mono text-sm tracking-widest">
+                <span class="w-2 h-2 bg-saturn-gold rounded-full animate-ping"></span>
+                1946 — 2026
+            </div>
+            
+            <h1 class="text-7xl md:text-[10rem] font-display uppercase leading-[0.85] mb-6 tracking-tighter text-white drop-shadow-2xl">
+                САТУРН
+            </h1>
+            
+            <div class="text-2xl md:text-4xl font-light tracking-[0.4em] text-gray-400 uppercase mb-12 border-y border-white/10 py-4 inline-block font-condensed">
+                Раменское
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mt-8">
+                <div class="glass-card p-4 rounded text-center">
+                    <div class="text-saturn-neon font-display text-2xl">80</div>
+                    <div class="text-gray-500 text-xs uppercase font-mono">Лет истории</div>
+                </div>
+                <div class="glass-card p-4 rounded text-center">
+                    <div class="text-saturn-neon font-display text-2xl">12</div>
+                    <div class="text-gray-500 text-xs uppercase font-mono">Сезонов в РПЛ</div>
+                </div>
+                <div class="glass-card p-4 rounded text-center">
+                    <div class="text-saturn-gold font-display text-2xl">2008</div>
+                    <div class="text-gray-500 text-xs uppercase font-mono">Кубок Интертото</div>
+                </div>
+                <div class="glass-card p-4 rounded text-center">
+                    <div class="text-saturn-neon font-display text-2xl">1999</div>
+                    <div class="text-gray-500 text-xs uppercase font-mono">Стадион</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Блок: Истоки (ВОССТАНОВЛЕНО ПОЛНОСТЬЮ) -->
+    <section id="origins" class="py-24 bg-[#080c14] relative">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row gap-12 items-center">
+                <div class="w-full md:w-1/2" data-aos="fade-right">
+                    <h2 class="text-5xl font-display uppercase mb-6 leading-tight">От заводского цеха <br><span class="text-saturn-neon">к звездам</span></h2>
+                    <p class="text-gray-300 mb-6 leading-relaxed border-l-2 border-saturn-gold pl-4 text-lg">
+                        История клуба неразрывно связана с Раменским приборостроительным заводом (РПЗ). Команда была основана в послевоенном 1946 году, когда страна возвращалась к мирной жизни.
+                    </p>
+                    <p class="text-gray-400 text-sm mb-8 leading-relaxed">
+                        Долгое время коллектив выступал в региональных соревнованиях, являясь классической "заводской" командой, где игроки зачастую числились рабочими цехов. Путь к профессиональному статусу занял более 40 лет.
+                    </p>
+                    
+                    <!-- ВОССТАНОВЛЕНЫ ВСЕ 4 НАЗВАНИЯ -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-white/5 p-4 rounded border border-white/10">
+                            <div class="text-saturn-neon font-bold font-condensed text-xl mb-1">Снайпер</div>
+                            <div class="text-xs text-gray-500 font-mono">1946—1950</div>
+                            <div class="text-xs text-gray-400 mt-2">Первое имя коллектива</div>
+                        </div>
+                        <div class="bg-white/5 p-4 rounded border border-white/10">
+                            <div class="text-saturn-neon font-bold font-condensed text-xl mb-1">Крылья Советов</div>
+                            <div class="text-xs text-gray-500 font-mono">1951—1957</div>
+                            <div class="text-xs text-gray-400 mt-2">Ведомственное общество</div>
+                        </div>
+                        <div class="bg-white/5 p-4 rounded border border-white/10">
+                            <div class="text-saturn-neon font-bold font-condensed text-xl mb-1">Труд</div>
+                            <div class="text-xs text-gray-500 font-mono">1958—1959</div>
+                            <div class="text-xs text-gray-400 mt-2">Переходный период</div>
+                        </div>
+                        <div class="bg-saturn-blue p-4 rounded border border-saturn-gold shadow-[0_0_15px_rgba(255,215,0,0.2)]">
+                            <div class="text-white font-bold font-condensed text-xl mb-1">Сатурн</div>
+                            <div class="text-xs text-gray-300 font-mono">с 1960</div>
+                            <div class="text-xs text-gray-200 mt-2">Легендарное имя</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="w-full md:w-1/2 relative" data-aos="fade-left">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-saturn-neon/20 to-transparent rounded-2xl blur-2xl"></div>
+                    <div class="glass-card p-8 rounded-2xl relative z-10 border border-white/10">
+                        <h3 class="font-mono text-xl text-saturn-gold mb-6 uppercase border-b border-gray-700 pb-4">Факты основания</h3>
+                        <!-- ВОССТАНОВЛЕН СПИСОК ФАКТОВ -->
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-4">
+                                <i class="fas fa-industry text-saturn-neon mt-1"></i>
+                                <div>
+                                    <strong class="block text-white font-condensed text-lg">База: РПЗ</strong>
+                                    <span class="text-sm text-gray-400">Раменский приборостроительный завод — гигант авиационной промышленности.</span>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <i class="fas fa-trophy text-saturn-neon mt-1"></i>
+                                <div>
+                                    <strong class="block text-white font-condensed text-lg">Первый успех</strong>
+                                    <span class="text-sm text-gray-400">1968 год — выход в класс «Б» чемпионата СССР (полупрофессиональный уровень).</span>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <i class="fas fa-briefcase text-saturn-neon mt-1"></i>
+                                <div>
+                                    <strong class="block text-white font-condensed text-lg">Профессионалы</strong>
+                                    <span class="text-sm text-gray-400">1988 год — выход во Вторую лигу СССР, переход на профессиональные рельсы.</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Full Timeline (1946 - 2026) -->
+    <section id="history" class="py-24 bg-gradient-to-b from-[#080c14] to-[#00152e] relative overflow-hidden">
+        <div class="container mx-auto px-4 relative z-10">
+            <h2 class="text-4xl md:text-6xl font-display uppercase text-center mb-20">
+                Хронология <span class="text-saturn-neon">Событий</span>
+            </h2>
+
+            <div class="relative max-w-5xl mx-auto">
+                <div class="hidden md:block timeline-line bg-white/10"></div>
+
+                <!-- 1946 (NEW: START) -->
+                <div class="flex flex-col md:flex-row justify-between items-center mb-16 w-full group">
+                    <div class="w-full md:w-5/12 text-center md:text-right p-4" data-aos="fade-right">
+                        <div class="text-3xl font-display text-white group-hover:text-saturn-neon transition">1946</div>
+                        <h4 class="text-xl font-bold font-condensed uppercase mb-2">Основание</h4>
+                        <p class="text-gray-400 text-sm">Создание футбольной команды при Раменском приборостроительном заводе.</p>
+                    </div>
+                    <div class="w-8 h-8 rounded-full bg-saturn-dark border-4 border-gray-600 z-20 group-hover:border-saturn-neon group-hover:scale-125 transition duration-300"></div>
+                    <div class="w-full md:w-5/12 p-4 hidden md:block"></div>
+                </div>
+
+                <!-- 1988 -->
+                <div class="flex flex-col md:flex-row justify-between items-center mb-16 w-full group">
+                    <div class="w-full md:w-5/12 p-4 hidden md:block"></div>
+                    <div class="w-8 h-8 rounded-full bg-saturn-dark border-4 border-gray-600 z-20 group-hover:border-saturn-neon group-hover:scale-125 transition duration-300"></div>
+                    <div class="w-full md:w-5/12 text-center md:text-left p-4" data-aos="fade-left">
+                        <div class="text-3xl font-display text-white group-hover:text-saturn-neon transition">1988</div>
+                        <h4 class="text-xl font-bold font-condensed uppercase mb-2">Статус Мастеров</h4>
+                        <p class="text-gray-400 text-sm">Выход во Вторую лигу СССР. Клуб окончательно переходит на профессиональные рельсы.</p>
+                    </div>
+                </div>
+
+                <!-- 1995 -->
+                <div class="flex flex-col md:flex-row justify-between items-center mb-16 w-full group">
+                    <div class="w-full md:w-5/12 text-center md:text-right p-4" data-aos="fade-right">
+                        <div class="text-3xl font-display text-white group-hover:text-saturn-neon transition">1995</div>
+                        <h4 class="text-xl font-bold font-condensed uppercase mb-2">Вторая Лига России</h4>
+                        <p class="text-gray-400 text-sm">Второе место в зоне «Центр». Начало стремительного подъема по футбольной лестнице.</p>
+                    </div>
+                    <div class="w-8 h-8 rounded-full bg-saturn-dark border-4 border-gray-600 z-20 group-hover:border-saturn-neon group-hover:scale-125 transition duration-300"></div>
+                    <div class="w-full md:w-5/12 p-4 hidden md:block"></div>
+                </div>
+                
+                <!-- 1998 -->
+                <div class="flex flex-col md:flex-row justify-between items-center mb-16 w-full group">
+                    <div class="w-full md:w-5/12 p-4 hidden md:block"></div>
+                    <div class="w-8 h-8 rounded-full bg-saturn-neon shadow-[0_0_20px_#00d4ff] z-20"></div>
+                    <div class="w-full md:w-5/12 text-center md:text-left p-4 glass-card border-l-4 border-saturn-neon" data-aos="fade-left">
+                        <div class="text-4xl font-display text-saturn-neon">1998</div>
+                        <h4 class="text-xl font-bold font-condensed uppercase mb-2 text-white">Выход в Элиту</h4>
+                        <p class="text-gray-300 text-sm">Под руководством Сергея Павлова «Сатурн» выигрывает Первый дивизион и впервые выходит в Высшую лигу!</p>
+                    </div>
+                </div>
+
+                <!-- 1999 -->
+                <div class="flex flex-col md:flex-row justify-between items-center mb-16 w-full group">
+                    <div class="w-full md:w-5/12 text-center md:text-right p-4" data-aos="fade-right">
+                        <div class="text-3xl font-display text-white">1999</div>
+                        <h4 class="text-xl font-bold font-condensed uppercase mb-2">Дебют и Стадион</h4>
+                        <p class="text-gray-400 text-sm">2 мая открыт стадион «Сатурн». Первый в России чисто футбольный стадион.</p>
+                    </div>
+                    <div class="w-8 h-8 rounded-full bg-saturn-dark border-4 border-white z-20"></div>
+                    <div class="w-full md:w-5/12 p-4 hidden md:block"></div>
+                </div>
+
+                <!-- 2002-2004 -->
+                 <div class="flex flex-col md:flex-row justify-between items-center mb-16 w-full group">
+                    <div class="w-full md:w-5/12 p-4 hidden md:block"></div>
+                    <div class="w-8 h-8 rounded-full bg-saturn-dark border-4 border-gray-600 z-20"></div>
+                    <div class="w-full md:w-5/12 text-center md:text-left p-4" data-aos="fade-left">
+                        <div class="text-3xl font-display text-white">2002—2004</div>
+                        <h4 class="text-xl font-bold font-condensed uppercase mb-2">Эпоха Романцева</h4>
+                        <p class="text-gray-400 text-sm">Яркий, но короткий период работы Олега Романцева. Команда становится грозной силой.</p>
+                    </div>
+                </div>
+
+                <!-- 2007 -->
+                <div class="flex flex-col md:flex-row justify-between items-center mb-16 w-full group">
+                    <div class="w-full md:w-5/12 text-center md:text-right p-4 glass-card border-r-4 border-saturn-gold" data-aos="fade-right">
+                        <div class="text-4xl font-display text-saturn-gold">2007</div>
+                        <h4 class="text-xl font-bold font-condensed uppercase mb-2 text-white">Пик Славы</h4>
+                        <p class="text-gray-300 text-sm">Лучший сезон в истории. 5-е место в Премьер-Лиге под руководством Гаджи Гаджиева. Рекордная серия Кински.</p>
+                    </div>
+                    <div class="w-8 h-8 rounded-full bg-saturn-gold shadow-[0_0_20px_#FFD700] z-20"></div>
+                    <div class="w-full md:w-5/12 p-4 hidden md:block"></div>
+                </div>
+
+                <!-- 2010 -->
+                <div class="flex flex-col md:flex-row justify-between items-center mb-16 w-full group">
+                    <div class="w-full md:w-5/12 p-4 hidden md:block"></div>
+                    <div class="w-8 h-8 rounded-full bg-red-900 border-4 border-red-500 z-20"></div>
+                    <div class="w-full md:w-5/12 text-center md:text-left p-4" data-aos="fade-left">
+                        <div class="text-3xl font-display text-red-500">2010—2011</div>
+                        <h4 class="text-xl font-bold font-condensed uppercase mb-2">Крах</h4>
+                        <p class="text-gray-400 text-sm">Из-за огромных долгов клуб теряет место в РПЛ и профессиональный статус.</p>
+                    </div>
+                </div>
+
+                <!-- 2014 -->
+                <div class="flex flex-col md:flex-row justify-between items-center mb-16 w-full group">
+                    <div class="w-full md:w-5/12 text-center md:text-right p-4" data-aos="fade-right">
+                        <div class="text-3xl font-display text-white">2014</div>
+                        <h4 class="text-xl font-bold font-condensed uppercase mb-2">Возрождение</h4>
+                        <p class="text-gray-400 text-sm">Возвращение в ПФЛ (Второй дивизион). Путь с чистого листа.</p>
+                    </div>
+                    <div class="w-8 h-8 rounded-full bg-saturn-dark border-4 border-white z-20"></div>
+                    <div class="w-full md:w-5/12 p-4 hidden md:block"></div>
+                </div>
+
+                <!-- 2023 -->
+                <div class="flex flex-col md:flex-row justify-between items-center mb-16 w-full group">
+                    <div class="w-full md:w-5/12 p-4 hidden md:block"></div>
+                    <div class="w-8 h-8 rounded-full bg-saturn-dark border-4 border-gray-600 z-20"></div>
+                    <div class="w-full md:w-5/12 text-center md:text-left p-4" data-aos="fade-left">
+                        <div class="text-3xl font-display text-white">2023</div>
+                        <h4 class="text-xl font-bold font-condensed uppercase mb-2">Леон Сатурн</h4>
+                        <p class="text-gray-400 text-sm">Новая эра с титульным спонсором. Смена логотипа, медийная активность.</p>
+                    </div>
+                </div>
+
+                 <!-- 2026 (NEW: FUTURE) -->
+                 <div class="flex flex-col md:flex-row justify-between items-center mb-16 w-full group">
+                    <div class="w-full md:w-5/12 text-center md:text-right p-4 glass-card border-saturn-neon/30" data-aos="fade-right">
+                        <div class="text-3xl font-display text-saturn-neon">2026</div>
+                        <h4 class="text-xl font-bold font-condensed uppercase mb-2">80 Лет</h4>
+                        <p class="text-gray-400 text-sm">Юбилейный год. История продолжается.</p>
+                    </div>
+                    <div class="w-8 h-8 rounded-full bg-saturn-blue border-4 border-saturn-neon animate-pulse z-20"></div>
+                    <div class="w-full md:w-5/12 p-4 hidden md:block"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Stats (6 ITEMS PER CARD) -->
+    <section id="stats" class="py-20 bg-saturn-dark relative">
+        <div class="absolute inset-0 bg-saturn-blue/5"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <h2 class="text-4xl font-display uppercase mb-12 text-center">Зал <span class="text-saturn-gold">Рекордов</span></h2>
+            
+            <div class="max-w-6xl mx-auto glass-card rounded-xl overflow-hidden min-h-[500px]">
+                <!-- Tabs -->
+                <div class="flex border-b border-white/10 font-condensed text-lg uppercase tracking-wider overflow-x-auto">
+                    <button onclick="switchTab('scorers')" class="stat-tab active flex-1 py-4 px-4 hover:bg-white/5 transition text-gray-400 whitespace-nowrap" id="tab-scorers">Бомбардиры</button>
+                    <button onclick="switchTab('matches')" class="stat-tab flex-1 py-4 px-4 hover:bg-white/5 transition text-gray-400 whitespace-nowrap" id="tab-matches">Гвардейцы</button>
+                    <button onclick="switchTab('assistants')" class="stat-tab flex-1 py-4 px-4 hover:bg-white/5 transition text-gray-400 whitespace-nowrap" id="tab-assistants">Ассистенты</button>
+                </div>
+
+                <!-- Content Area -->
+                <div class="p-6 md:p-10">
+                    <div id="stats-content" class="transition-opacity duration-300">
+                        <!-- JS renders content here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блок: Еврокубки -->
+    <section id="euro" class="py-20 bg-saturn-blue/10 border-y border-white/5 relative">
+        <div class="absolute inset-0 opacity-30 bg-repeat" style="background-image: url('https://www.transparenttextures.com/patterns/stardust.png');"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <h2 class="text-4xl font-display uppercase mb-12 text-center">Европейский <span class="text-saturn-neon">Вояж</span></h2>
+            
+            <div class="flex flex-col lg:flex-row gap-12 items-center">
+                <div class="w-full lg:w-1/2 glass-card p-8 rounded-xl border border-saturn-neon/30" data-aos="flip-up">
+                    <div class="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
+                        <div class="text-left">
+                            <div class="text-xs text-gray-400 font-mono">Кубок Интертото 2008</div>
+                            <div class="text-2xl font-bold font-condensed">Раунд 2</div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-saturn-neon font-display text-3xl">7 : 0</div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-300 mb-4">
+                        Разгром люксембургской «Этцеллы». Дмитрий Кириченко оформляет покер в домашнем матче (7:0), вписывая свое имя в историю клуба.
+                    </p>
+                </div>
+
+                <div class="w-full lg:w-1/2 glass-card p-8 rounded-xl" data-aos="flip-up" data-aos-delay="100">
+                    <div class="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
+                        <div class="text-left">
+                            <div class="text-xs text-gray-400 font-mono">Кубок Интертото 2008</div>
+                            <div class="text-2xl font-bold font-condensed">Финал</div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-white font-display text-3xl">Сатурн <span class="text-saturn-gold">vs</span> Штутгарт</div>
+                        </div>
+                    </div>
+                    <ul class="text-sm text-gray-300 space-y-2 mb-4">
+                        <li class="flex justify-between"><span>Дома:</span> <span class="text-saturn-neon font-bold">1:0</span> (Гол: Кириченко)</li>
+                        <li class="flex justify-between"><span>В гостях:</span> <span class="text-red-400 font-bold">0:3 (д.в.)</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блок: Легенды (PHOTO PLACEHOLDERS) -->
+    <section id="coaches" class="py-20 bg-[#050a14]">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-display uppercase mb-12 text-right">Зал <span class="text-saturn-neon">Славы</span></h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Legend 1 -->
+                <div class="group relative overflow-hidden rounded-xl bg-gray-900 border border-gray-800 hover:border-saturn-gold transition aspect-portrait">
+                    <!-- ЗАМЕНИТЬ SRC: Вертикальное фото 3:4 -->
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Sergei_Pavlov_2018.jpg" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-110 transition duration-700 grayscale group-hover:grayscale-0" alt="Павлов">
+                    <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black via-black/80 to-transparent p-6">
+                        <h3 class="text-2xl font-condensed text-white">Сергей Павлов</h3>
+                        <p class="text-saturn-gold text-xs font-mono uppercase">Тренер</p>
+                    </div>
+                </div>
+
+                <!-- Legend 2 -->
+                <div class="group relative overflow-hidden rounded-xl bg-gray-900 border border-gray-800 hover:border-saturn-gold transition aspect-portrait">
+                     <!-- ЗАМЕНИТЬ SRC: Вертикальное фото 3:4 -->
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/07/Anton%C3%ADn_Kinsk%C3%BD_2010.jpg" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-110 transition duration-700 grayscale group-hover:grayscale-0" alt="Кински">
+                    <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black via-black/80 to-transparent p-6">
+                        <h3 class="text-2xl font-condensed text-white">Антонин Кински</h3>
+                        <p class="text-saturn-gold text-xs font-mono uppercase">Вратарь</p>
+                    </div>
+                </div>
+                
+                 <!-- Legend 3 -->
+                 <div class="group relative overflow-hidden rounded-xl bg-gray-900 border border-gray-800 hover:border-saturn-gold transition aspect-portrait">
+                    <!-- ЗАМЕНИТЬ SRC: Вертикальное фото 3:4 -->
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Dmitri_Kirichenko_2011.jpg" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-110 transition duration-700 grayscale group-hover:grayscale-0" alt="Кириченко">
+                    <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black via-black/80 to-transparent p-6">
+                        <h3 class="text-2xl font-condensed text-white">Дмитрий Кириченко</h3>
+                        <p class="text-saturn-gold text-xs font-mono uppercase">Бомбардир</p>
+                    </div>
+                </div>
+
+                <!-- Legend 4 -->
+                <div class="group relative overflow-hidden rounded-xl bg-gray-900 border border-gray-800 hover:border-saturn-gold transition aspect-portrait flex items-center justify-center">
+                    <!-- Плейсхолдер для фото 3:4 -->
+                    <img src="https://placehold.co/450x600/111/333?text=Legend+Photo" class="absolute inset-0 w-full h-full object-cover opacity-30" alt="Placeholder">
+                    <div class="text-center p-6 z-10">
+                        <i class="fas fa-user-plus text-4xl text-gray-700 mb-4 group-hover:text-saturn-gold transition"></i>
+                        <h3 class="text-xl font-condensed text-gray-500 group-hover:text-white">Место для Легенды</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Quiz -->
+    <section id="quiz" class="py-24 bg-gradient-to-t from-[#000] to-[#050a14] relative">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-display uppercase mb-4">Тест на <span class="text-saturn-gold">Инопланетянина</span></h2>
+            <p class="text-gray-400 mb-12 max-w-2xl mx-auto">Проверь свои знания истории черно-синих.</p>
+
+            <div class="max-w-2xl mx-auto glass-card p-8 rounded-2xl relative min-h-[400px] flex flex-col justify-center border border-saturn-gold/20">
+                <div id="quiz-container">
+                    <div class="mb-8">
+                        <span id="question-number" class="text-saturn-gold font-mono text-sm uppercase tracking-widest mb-2 block">Вопрос 1/5</span>
+                        <h3 id="question-text" class="text-2xl font-bold font-condensed text-white">Вопрос загружается...</h3>
+                    </div>
+                    <div id="options-container" class="grid gap-4 text-left">
+                        <!-- Options injected via JS -->
+                    </div>
+                </div>
+
+                <div id="result-container" class="hidden">
+                    <i id="result-icon" class="fas fa-rocket text-6xl text-saturn-gold mb-6 animate-bounce"></i>
+                    <h3 id="result-title" class="text-3xl font-display text-white mb-4">Результат</h3>
+                    <p id="result-desc" class="text-gray-300 mb-8 text-lg">Описание</p>
+                    <button onclick="restartQuiz()" class="bg-saturn-blue hover:bg-saturn-neon text-white font-bold py-3 px-8 rounded-full transition duration-300 border border-saturn-neon">
+                        Попробовать снова
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блок Стадион -->
+    <section id="stadium" class="relative min-h-[80vh] flex items-end pb-20 bg-gray-900 overflow-hidden">
+        <!-- ЗАМЕНИТЬ SRC: Широкое фото 16:9 или шире -->
+        <div class="absolute inset-0 w-full h-full">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Saturn_Stadium_Ramenskoe_View_from_East_Stand.jpg/1200px-Saturn_Stadium_Ramenskoe_View_from_East_Stand.jpg" class="w-full h-full object-cover opacity-60 fixed-bg-effect" alt="Stadium">
+        </div>
+        
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+
+        <div class="container mx-auto px-4 z-10 flex flex-col md:flex-row items-end justify-between">
+            <div class="mb-8 md:mb-0" data-aos="fade-right">
+                <div class="bg-saturn-gold text-black px-3 py-1 inline-block text-xs font-mono uppercase mb-2 font-bold">Home of Aliens</div>
+                <h2 class="text-5xl md:text-7xl font-display uppercase leading-tight">
+                    Стадион <br><span class="text-saturn-neon">«Сатурн»</span>
+                </h2>
+                <div class="max-w-xl mt-4 text-gray-300 drop-shadow-md bg-black/60 p-6 backdrop-blur-md rounded border border-white/10">
+                    <p class="mb-4">
+                        Арена, изменившая стандарты российского футбола. В 1999 году это был первый чисто футбольный стадион в стране.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="glass-card p-6 rounded-lg w-full md:w-auto min-w-[300px]" data-aos="fade-left">
+                <ul class="space-y-4 font-mono text-sm">
+                    <li class="flex justify-between border-b border-gray-700 pb-2 gap-8">
+                        <span class="text-gray-400">Открытие</span>
+                        <span class="text-right">2 Мая 1999</span>
+                    </li>
+                    <li class="flex justify-between border-b border-gray-700 pb-2 gap-8">
+                        <span class="text-gray-400">Вместимость</span>
+                        <span>14 685</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#020202] py-16 border-t border-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+                <div class="mb-6 md:mb-0 text-center md:text-left">
+                    <div class="text-4xl font-display uppercase text-white mb-2">
+                        Сатурн <span class="text-saturn-neon">80</span>
+                    </div>
+                    <p class="text-gray-600 text-sm font-mono max-w-sm">
+                        Официальный фан-лэндинг к юбилею черно-синих.
+                    </p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="#" class="w-12 h-12 rounded-full bg-gray-900 border border-gray-800 flex items-center justify-center text-gray-400 hover:bg-saturn-blue hover:text-white hover:border-saturn-gold transition duration-300">
+                        <i class="fab fa-vk text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-900 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-600 font-mono">
+                <div>&copy; 1946 - 2026 FC Saturn Ramenskoye. Tribute Page.</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Init Animations
+        AOS.init({
+            once: true,
+            offset: 50,
+            duration: 1000,
+        });
+
+        /* --- STATS LOGIC (6 Items per category) --- */
+        const statsData = {
+            scorers: [
+                { name: "Дмитрий Кириченко", value: "26 голов", sub: "Легенда" },
+                { name: "Алексей Медведев", value: "23 гола", sub: "Нападающий" },
+                { name: "Сергей Рогачев", value: "20 голов", sub: "Форвард" },
+                { name: "Мартин Якубко", value: "14 голов", sub: "Мощь" },
+                { name: "Баффу Гьян", value: "12 голов", sub: "Техника" },
+                { name: "Андрей Каряка", value: "11 голов", sub: "Мастер" }
+            ],
+            matches: [
+                { name: "Антонин Кински", value: "182 матча", sub: "Вратарь" },
+                { name: "Алексей Игонин", value: "142 матча", sub: "Капитан" },
+                { name: "Петр Немов", value: "108 матчей", sub: "Хавбек" },
+                { name: "Руслан Нахушев", value: "100+ матчей", sub: "Защитник" },
+                { name: "Милан Вьештица", value: "90+ матчей", sub: "Защитник" },
+                { name: "Ян Дюрица", value: "72 матча", sub: "Защитник" }
+            ],
+            assistants: [
+                { name: "Андрей Каряка", value: "15+ ассистов", sub: "Плеймейкер" },
+                { name: "Дмитрий Лоськов", value: "Топ распасовщик", sub: "Маэстро" },
+                { name: "Алексей Еременко", value: "Креатив", sub: "Финн" },
+                { name: "Эдгарас Чеснаускис", value: "Фланг", sub: "Скорость" },
+                { name: "Алексей Иванов", value: "Дриблинг", sub: "Вингер" },
+                { name: "Игорь Лебеденко", value: "Атака", sub: "Универсал" }
+            ]
+        };
+
+        function switchTab(tabName) {
+            // Update Tab Styles
+            document.querySelectorAll('.stat-tab').forEach(t => {
+                t.classList.remove('active', 'text-saturn-gold');
+                t.classList.add('text-gray-400');
+            });
+            const activeTab = document.getElementById('tab-' + tabName);
+            activeTab.classList.add('active', 'text-saturn-gold');
+            activeTab.classList.remove('text-gray-400');
+
+            // Render Content
+            const contentDiv = document.getElementById('stats-content');
+            contentDiv.style.opacity = '0';
+            
+            setTimeout(() => {
+                // Changed grid to fit 6 items nicely (2 cols on md, 3 cols on lg if needed, sticking to 2 cols based on request)
+                let html = '<div class="grid grid-cols-1 md:grid-cols-2 gap-4">';
+                statsData[tabName].forEach((item, index) => {
+                    html += `
+                        <div class="flex items-center p-4 bg-white/5 rounded border border-white/5 hover:border-saturn-gold/50 transition group">
+                            <div class="text-3xl font-display text-gray-700 w-12 text-center mr-2 group-hover:text-saturn-gold/20 transition">#${index + 1}</div>
+                            <div>
+                                <div class="text-lg font-condensed text-white group-hover:text-saturn-neon transition font-bold uppercase">${item.name}</div>
+                                <div class="text-sm text-gray-400">${item.value} <span class="text-saturn-gold mx-1">/</span> ${item.sub}</div>
+                            </div>
+                        </div>
+                    `;
+                });
+                html += '</div>';
+                contentDiv.innerHTML = html;
+                contentDiv.style.opacity = '1';
+            }, 300);
+        }
+
+        // Init Stats
+        switchTab('scorers');
+
+        /* --- QUIZ LOGIC --- */
+        const quizData = [
+            { q: "Кто забил первый гол «Сатурна» в Высшей лиге (1999)?", options: ["Игорь Гаврилин", "Сергей Наталушко", "Алексей Медведев", "Валерий Чижов"], correct: 1 },
+            { q: "С какой командой сыграли 3:3 на открытии стадиона?", options: ["Спартак", "ЦСКА", "Динамо", "Зенит"], correct: 2 },
+            { q: "Какой клуб выбил «Сатурн» из Кубка Интертото 2008?", options: ["Бавария", "Штутгарт", "Гамбург", "Вердер"], correct: 1 },
+            { q: "Какое наивысшее место занимал клуб в РПЛ?", options: ["3-е", "5-е", "6-е", "4-е"], correct: 1 },
+            { q: "Кто рекордсмен клуба по матчам в РПЛ?", options: ["Антонин Кински", "Жан Нарде", "Антонио Жедер", "Дмитрий Лоськов"], correct: 0 }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function renderQuestion() {
+            const q = quizData[currentQuestion];
+            document.getElementById('question-number').innerText = `Вопрос ${currentQuestion + 1}/${quizData.length}`;
+            document.getElementById('question-text').innerText = q.q;
+            
+            let optionsHtml = '';
+            q.options.forEach((opt, index) => {
+                optionsHtml += `<div onclick="checkAnswer(${index})" class="quiz-option p-4 rounded border border-white/10 bg-white/5 text-gray-300 hover:text-white font-condensed text-lg">${opt}</div>`;
+            });
+            document.getElementById('options-container').innerHTML = optionsHtml;
+        }
+
+        function checkAnswer(selectedIndex) {
+            const correctIndex = quizData[currentQuestion].correct;
+            const options = document.querySelectorAll('.quiz-option');
+            options.forEach(opt => opt.onclick = null);
+
+            if(selectedIndex === correctIndex) {
+                options[selectedIndex].classList.add('bg-green-500/20', 'border-green-500', 'text-green-400');
+                score++;
+            } else {
+                options[selectedIndex].classList.add('bg-red-500/20', 'border-red-500', 'text-red-400');
+                options[correctIndex].classList.add('bg-green-500/20', 'border-green-500', 'text-green-400');
+            }
+
+            setTimeout(() => {
+                currentQuestion++;
+                if(currentQuestion < quizData.length) { renderQuestion(); } else { showResult(); }
+            }, 1500);
+        }
+
+        function showResult() {
+            document.getElementById('quiz-container').classList.add('hidden');
+            document.getElementById('result-container').classList.remove('hidden');
+            const title = document.getElementById('result-title');
+            const desc = document.getElementById('result-desc');
+            const icon = document.getElementById('result-icon');
+
+            if(score === 5) {
+                title.innerText = "Истинный Инопланетянин!";
+                desc.innerText = "Ты помнишь всё до мелочей. Легендарный уровень!";
+                icon.className = "fas fa-crown text-6xl text-saturn-gold mb-6 animate-bounce";
+            } else if (score >= 3) {
+                title.innerText = "Болельщик со стажем";
+                desc.innerText = "Хороший результат! Ты явно застал лучшие годы команды.";
+                icon.className = "fas fa-star text-6xl text-saturn-neon mb-6";
+            } else {
+                title.innerText = "Турист";
+                desc.innerText = "Кажется, ты начал болеть недавно. Изучи историю!";
+                icon.className = "fas fa-user-astronaut text-6xl text-gray-500 mb-6";
+            }
+        }
+
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            document.getElementById('result-container').classList.add('hidden');
+            document.getElementById('quiz-container').classList.remove('hidden');
+            renderQuestion();
+        }
+
+        renderQuestion();
+    </script>
+</body>
+</html>
