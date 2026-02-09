@@ -513,4 +513,26 @@
         }
 
         function checkAnswer(selectedIndex) {
-            const correctIndex = quizData[current
+            const correctIndex = quizData[currentQuestion].correct;
+            const options = document.querySelectorAll('.quiz-option');
+            options.forEach(opt => opt.onclick = null);
+            if(selectedIndex === correctIndex) { options[selectedIndex].classList.add('bg-green-500/20', 'border-green-500', 'text-green-400'); score++; }
+            else { options[selectedIndex].classList.add('bg-red-500/20', 'border-red-500', 'text-red-400'); options[correctIndex].classList.add('bg-green-500/20', 'border-green-500', 'text-green-400'); }
+            setTimeout(() => { currentQuestion++; if(currentQuestion < quizData.length) { renderQuestion(); } else { showResult(); } }, 1500);
+        }
+
+        function showResult() {
+            document.getElementById('quiz-container').classList.add('hidden');
+            document.getElementById('result-container').classList.remove('hidden');
+            const title = document.getElementById('result-title');
+            const desc = document.getElementById('result-desc');
+            if(score === 5) { title.innerText = "Истинный Инопланетянин!"; desc.innerText = "Ты помнишь всё до мелочей."; }
+            else if (score >= 3) { title.innerText = "Болельщик со стажем"; desc.innerText = "Хороший результат!"; }
+            else { title.innerText = "Турист"; desc.innerText = "Изучи историю!"; }
+        }
+
+        function restartQuiz() { currentQuestion = 0; score = 0; document.getElementById('result-container').classList.add('hidden'); document.getElementById('quiz-container').classList.remove('hidden'); renderQuestion(); }
+        renderQuestion();
+    </script>
+</body>
+</html>
